@@ -6,7 +6,14 @@ from starlette.config import Config
 config = Config(".env")
 SQLALCHEMY_DATABASE_URL = config('SQLALCHEMY_DATABASE_URL')     # 데이터베이스 접속 주소
 
-engine = create_engine(SQLALCHEMY_DATABASE_URL, connect_args={"check_same_thread": False})
+if SQLALCHEMY_DATABASE_URL.startswith("sqlite"):
+    engine = create_engine(
+        SQLALCHEMY_DATABASE_URL, connect_args={"check_same_thread": False}
+    )
+else:
+    engine = create_engine(
+        SQLALCHEMY_DATABASE_URL
+    )
 
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
