@@ -1,5 +1,6 @@
 .idea
 myapi.db
+fastapi_start.db
 *.pyc
 __pycache__
 migrations
