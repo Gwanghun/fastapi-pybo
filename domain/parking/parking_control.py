@@ -37,6 +37,8 @@ class parking_control:
         service = Service('/path/to/chromedriver')
         self.driver = webdriver.Chrome(service=service, options=chrome_options)
         self.driver.get(self.parking_url)
+        print("브라우저 열기")
+        print(self.driver.title)
         time.sleep(2)
 
     def login(self):
