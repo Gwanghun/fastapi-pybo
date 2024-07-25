@@ -15,7 +15,14 @@ class parking_control:
         self.driver = None
 
     def open_browser(self):
-        self.driver = webdriver.Chrome()
+        options = webdriver.ChromeOptions()
+        options.add_argument('headless')
+        options.add_argument("disable-gpu")
+        options.add_argument("lang=ko_KR")
+        options.add_argument(
+            "user-agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Whale/3.18.154.8 Safari/537.36'")
+
+        self.driver = webdriver.Chrome(options=options)
         self.driver.get(self.parking_url)
         time.sleep(2)
 
