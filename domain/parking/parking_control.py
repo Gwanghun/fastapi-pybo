@@ -1,5 +1,5 @@
 from selenium import webdriver
-from selenium.webdriver.chrome.service import Service
+# from selenium.webdriver.chrome.service import Service
 # from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
@@ -7,7 +7,7 @@ import time
 import re
 
 # 크롬 드라이버 자동 업데이트
-from webdriver_manager.chrome import ChromeDriverManager
+# from webdriver_manager.chrome import ChromeDriverManager
 
 class parking_control:
     def __init__(self, car_number):
@@ -19,14 +19,15 @@ class parking_control:
         self.driver = None
 
     def open_browser(self):
-        options = webdriver.ChromeOptions()
-        options.add_argument('headless')
-        options.add_argument("disable-gpu")
-        options.add_argument("lang=ko_KR")
-        options.add_argument("user-agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36")
-
-        service = Service(executable_path=ChromeDriverManager().install())
-        self.driver = webdriver.Chrome(service=service, options=options)
+        # options = webdriver.ChromeOptions()
+        # options.add_argument('headless')
+        # options.add_argument("disable-gpu")
+        # options.add_argument("lang=ko_KR")
+        # options.add_argument("user-agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36")
+        #
+        # service = Service(executable_path=ChromeDriverManager().install())
+        # self.driver = webdriver.Chrome(service=service, options=options)
+        self.driver = webdriver.Chrome()
         self.driver.get(self.parking_url)
         time.sleep(2)
 
