@@ -25,6 +25,19 @@
     })
   }
 
+  function parking_test(){
+    console.log("주차등록 테스트");
+    let params = {car_number: 3382};
+    fastapi('post', '/api/parking/register?car_number=3382', {},
+      (json) => {
+        console.log(json);
+      },
+      (err_json) => {
+        console.log(err_json);
+      }
+    )
+  }
+
   $:$page, $keyword, get_question_list()    // page, keyword가 변경될 때마다 get_question_list() 함수를 호출
 </script>
 
@@ -88,8 +101,12 @@
       <li class="page-item {$page >= total_page-1 && 'disabled'}">
           <button class="page-link" on:click="{() => $page++}">다음</button>
       </li>
-  </ul>
-  <!-- 페이징처리 끝 -->
+    </ul>
+    <!-- 페이징처리 끝 -->
+  </div>
+
+  <div>
+    <button type="button" on:click={parking_test}> 주차등록 테스트 </button>
   </div>
 
   <!-- <div>

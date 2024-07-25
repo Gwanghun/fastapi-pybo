@@ -181,6 +181,11 @@
     </div>
   </div>
   {/each}
+
+  {question.answers.length}
+
+  <!-- 페이징처리 -->
+  
   <!-- 답변 등록 -->
   <Error error={error} />
   <form method="post" class="my-3">

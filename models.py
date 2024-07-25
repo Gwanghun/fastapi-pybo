@@ -9,6 +9,8 @@ question_voter = Table(
     Column("question_id", Integer, ForeignKey("question.id"), primary_key=True)
 )
 
+
+# Question 모델
 class Question(Base):
     __tablename__ = "question"
 

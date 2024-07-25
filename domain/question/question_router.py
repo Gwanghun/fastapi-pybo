@@ -11,6 +11,9 @@ router = APIRouter(
     prefix="/api/question",
 )
 
+# db: Session : db 객체가 Session 타입임을 명시
+# response_model=question_schema.QuestionLis -> 반환되는 데이터의 형식을 명시, question_list 함수의 리턴값은 QuestionList 스키마로 구성된 리스트임을 의미
+
 
 @router.get("/list", response_model=question_schema.QuestionList)
 def question_list(db: Session = Depends(get_db),

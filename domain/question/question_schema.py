@@ -6,6 +6,7 @@ from domain.answer.answer_schema import Answer
 from domain.user.user_schema import User
 
 
+# Question 스키마
 class Question(BaseModel):
     id: int
     subject: str
