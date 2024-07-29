@@ -11,4 +11,5 @@ router = APIRouter(
 def parking_register(car_number: int):
     print(car_number)
     bot = PC.parking_control(car_number)
-    bot.run()
+    return_data = bot.run()
+    return return_data

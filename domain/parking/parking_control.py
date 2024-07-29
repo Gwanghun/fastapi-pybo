@@ -71,10 +71,15 @@ class parking_control:
 
         print(total_minutes)
         if total_minutes > 15:
-            self.click_button(total_minutes)
+            return_data = self.click_button(total_minutes)
+            return return_data
         else:
             print("15분 미만 주차시간입니다.")
             self.driver.quit()
+            return {
+                'result': False,
+                'msg': '15분 미만 주차시간 입니다.'
+            }
 
         time.sleep(5)
 
@@ -89,7 +94,11 @@ class parking_control:
                 time.sleep(1)
 
         # self.driver.stop()
-        time.sleep(10)
+        time.sleep(3)
+        return {
+            'result': True,
+            'msg': '주차등록  완료'
+        }
 
     def min_buttons_to_exceed_sum(self, target):
         # 버튼 값을 큰 순서대로 정렬
@@ -127,11 +136,12 @@ class parking_control:
         if msg == "검색 결과가 없습니다. 출차된 차량은 검색되지 않습니다.":
             self.driver.quit()
             return {
-                "car_number": self.car_number,
+                "result": False,
                 "msg": msg
             }
         else:
-            self.calculate_time()
+            return_data = self.calculate_time()
+            return return_data
 
     def capture(self):
         self.driver.save_screenshot("capture.png")
@@ -142,6 +152,6 @@ class parking_control:
         self.login()
         self.capture()
         self.search_car_number()
-        self.in_car_check()
+        return self.in_car_check()
         # self.calculate_time()
         # self.program.stop()
