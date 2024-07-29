@@ -150,7 +150,7 @@ class parking_control:
     def run(self):
         self.open_browser()
         self.login()
-        self.capture()
+        # self.capture()
         self.search_car_number()
         return self.in_car_check()
         # self.calculate_time()

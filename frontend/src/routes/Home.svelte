@@ -1,5 +1,6 @@
 <script>
   import fastapi from "../lib/api";
+  import async_fastapi from "../lib/async_api";
   import { link } from "svelte-spa-router";
   import { page, keyword, is_login } from "../lib/store"
   import moment from "moment/min/moment-with-locales"
@@ -25,17 +26,19 @@
     })
   }
 
-  function parking_test(){
+  async function parking_test(){
     console.log("주차등록 테스트");
     let params = {car_number: 3382};
-    fastapi('post', '/api/parking/register?car_number=3382', {},
-      (json) => {
-        console.log(json);
-      },
-      (err_json) => {
-        console.log(err_json);
-      }
-    )
+    // fastapi('post', '/api/parking/register?car_number=3382', {},
+    //   (json) => {
+    //     console.log(json);
+    //   },
+    //   (err_json) => {
+    //     console.log(err_json);
+    //   }
+    // )
+    const result = await async_fastapi('post', '/api/parking/register?car_number=3382', {})
+      
   }
 
   $:$page, $keyword, get_question_list()    // page, keyword가 변경될 때마다 get_question_list() 함수를 호출

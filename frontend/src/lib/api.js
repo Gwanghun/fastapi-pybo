@@ -18,7 +18,7 @@ const fastapi = (operation, url, params, success_callback, failure_callback) => 
   if (method === "get") {
     _url += "?" + new URLSearchParams(params);
   }
-  console.log(_url);
+  // console.log(_url);
 
   let options = {
     method: method,
