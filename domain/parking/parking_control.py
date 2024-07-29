@@ -9,6 +9,7 @@ import re
 # 크롬 드라이버 자동 업데이트
 from webdriver_manager.chrome import ChromeDriverManager
 
+
 class parking_control:
     def __init__(self, car_number):
         self.car_number = car_number
@@ -52,7 +53,8 @@ class parking_control:
     def search_car_number(self):
         input_box = self.driver.find_element(By.ID, value="schCarNo")
         input_box.send_keys(self.car_number)
-        input_box.send_keys(Keys.ENTER)
+        # input_box.send_keys(Keys.ENTER)
+        self.driver.find_element(By.CLASS_NAME, value="btnS1_1").click()
         time.sleep(1)
 
     def calculate_time(self):
@@ -120,9 +122,26 @@ class parking_control:
 
         return min_result[1]
 
+    def in_car_check(self):
+        msg = self.driver.find_element(By.CLASS_NAME, value="modal-text").text
+        if msg == "검색 결과가 없습니다. 출차된 차량은 검색되지 않습니다.":
+            self.driver.quit()
+            return {
+                "car_number": self.car_number,
+                "msg": msg
+            }
+        else:
+            self.calculate_time()
+
+    def capture(self):
+        self.driver.save_screenshot("capture.png")
+        # self.driver.quit()
+
     def run(self):
         self.open_browser()
         self.login()
+        self.capture()
         self.search_car_number()
-        self.calculate_time()
+        self.in_car_check()
+        # self.calculate_time()
         # self.program.stop()
