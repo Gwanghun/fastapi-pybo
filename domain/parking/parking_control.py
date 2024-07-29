@@ -35,7 +35,7 @@ class parking_control:
         chrome_options.binary_location = "/usr/bin/google-chrome"
 
         # service = Service('/path/to/chromedriver')
-        service = Service('/home/ubuntu/projects/fastapi-pybo/chromedriver-linux64')
+        service = Service('/home/ubuntu/projects/fastapi-pybo/chromedriver-linux64/chromedriver')
         self.driver = webdriver.Chrome(service=service, options=chrome_options)
         self.driver.get(self.parking_url)
         print("브라우저 열기")
