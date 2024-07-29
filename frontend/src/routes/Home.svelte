@@ -38,6 +38,7 @@
     //   }
     // )
     const result = await async_fastapi('post', '/api/parking/register?car_number=3382', {})
+    console.log(result);
       
   }
 
