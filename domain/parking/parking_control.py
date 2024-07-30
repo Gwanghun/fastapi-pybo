@@ -41,7 +41,7 @@ class parking_control:
         self.driver.get(self.parking_url)
         print("브라우저 열기")
         print(self.driver.title)
-        time.sleep(1)
+        time.sleep(0.5)
 
     def local_open_browser(self):
         # chrome_options = Options()
@@ -54,13 +54,13 @@ class parking_control:
         self.driver.get(self.parking_url)
         print("브라우저 열기")
         print(self.driver.title)
-        time.sleep(1)
+        time.sleep(0.5)
 
     def login(self):
         self.driver.find_element(By.ID, value="userId").send_keys(self.login_id)
         self.driver.find_element(By.NAME, value="userPwd").send_keys(self.login_pw)
         self.driver.find_element(By.ID, value="btnLogin").click()
-        time.sleep(1)
+        time.sleep(0.5)
         self.driver.find_element(By.CLASS_NAME, value="modal-btn").click()
 
     def search_car_number(self):
@@ -68,7 +68,7 @@ class parking_control:
         input_box.send_keys(self.car_number)
         # input_box.send_keys(Keys.ENTER)
         self.driver.find_element(By.CLASS_NAME, value="btnS1_1").click()
-        time.sleep(1)
+        time.sleep(0.5)
 
     def calculate_time(self):
         pattern = r'(?P<hours>\d+)시간\s*(?P<minutes>\d+)분\s*'
@@ -101,9 +101,9 @@ class parking_control:
             for i in range(count):
                 print(btn, count)
                 self.driver.find_element(By.XPATH, f"//*[@price='{btn}']").click()
-                time.sleep(1)
+                time.sleep(0.5)
                 self.driver.find_element(By.CLASS_NAME, value="modal-btn").click()
-                time.sleep(1)
+                time.sleep(0.5)
 
         # self.driver.stop()
         time.sleep(0.5)
