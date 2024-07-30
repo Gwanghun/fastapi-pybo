@@ -39,21 +39,13 @@ class parking_control:
         service = Service('/home/ubuntu/projects/fastapi-pybo/chromedriver-linux64/chromedriver')
         self.driver = webdriver.Chrome(service=service, options=chrome_options)
         self.driver.get(self.parking_url)
-        print("브라우저 열기")
-        print(self.driver.title)
+        # print("브라우저 열기")
+        # print(self.driver.title)
         time.sleep(0.5)
 
     def local_open_browser(self):
-        # chrome_options = Options()
-        # chrome_options.add_argument("--headless")
-        # chrome_options.add_argument("--disable-gpu")
-        # chrome_options.add_argument("--no-sandbox")
-        # chrome_options.add_argument("--disable-dev-shm-usage")
-
         self.driver = webdriver.Chrome()
         self.driver.get(self.parking_url)
-        print("브라우저 열기")
-        print(self.driver.title)
         time.sleep(0.5)
 
     def login(self):
@@ -73,7 +65,6 @@ class parking_control:
     def calculate_time(self):
         pattern = r'(?P<hours>\d+)시간\s*(?P<minutes>\d+)분\s*'
         different_time = self.driver.find_element(By.ID, value="differentTime").text
-        print(different_time)
 
         match = re.match(pattern, different_time)
         total_minutes = 0
@@ -82,12 +73,12 @@ class parking_control:
             minutes = int(match.group('minutes'))
             total_minutes = (hours * 60 + minutes) + 15  # 여분의 15분 추가
 
-        print(total_minutes)
+        # print(total_minutes)
         if total_minutes > 15:
             return_data = self.click_button(total_minutes)
             return return_data
         else:
-            print("15분 미만 주차시간입니다.")
+            # print("15분 미만 주차시간입니다.")
             self.driver.quit()
             return {
                 'result': False,

@@ -12,5 +12,4 @@ def parking_register(car_number: str):
     print(car_number)
     bot = PC.parking_control(car_number)
     return_data = bot.run()
-    print(return_data)
     return return_data
