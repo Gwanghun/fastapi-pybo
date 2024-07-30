@@ -7,9 +7,10 @@ router = APIRouter(
 )
 
 
-@router.post("/register", status_code=status.HTTP_204_NO_CONTENT)
+@router.post("/register", status_code=status.HTTP_200_OK)
 def parking_register(car_number: int):
     print(car_number)
     bot = PC.parking_control(car_number)
     return_data = bot.run()
+    print(return_data)
     return return_data

@@ -43,6 +43,19 @@ class parking_control:
         print(self.driver.title)
         time.sleep(2)
 
+    def local_open_browser(self):
+        # chrome_options = Options()
+        # chrome_options.add_argument("--headless")
+        # chrome_options.add_argument("--disable-gpu")
+        # chrome_options.add_argument("--no-sandbox")
+        # chrome_options.add_argument("--disable-dev-shm-usage")
+
+        self.driver = webdriver.Chrome()
+        self.driver.get(self.parking_url)
+        print("브라우저 열기")
+        print(self.driver.title)
+        time.sleep(2)
+
     def login(self):
         self.driver.find_element(By.ID, value="userId").send_keys(self.login_id)
         self.driver.find_element(By.NAME, value="userPwd").send_keys(self.login_pw)
@@ -80,8 +93,7 @@ class parking_control:
                 'result': False,
                 'msg': '15분 미만 주차시간 입니다.'
             }
-
-        time.sleep(5)
+        # time.sleep(5)
 
     def click_button(self, total_minutes):
         combination = (self.min_buttons_to_exceed_sum(total_minutes))
@@ -132,22 +144,26 @@ class parking_control:
         return min_result[1]
 
     def in_car_check(self):
-        msg = self.driver.find_element(By.CLASS_NAME, value="modal-text").text
-        if msg == "검색 결과가 없습니다. 출차된 차량은 검색되지 않습니다.":
+        print("in_car_check")
+        find_element = self.driver.find_element(By.CLASS_NAME, value="ev_dhx_skyblue")
+        car_number_string = str(self.car_number)
+        if car_number_string in find_element.text:
+            return_data = self.calculate_time()
+            return return_data
+        else:
             self.driver.quit()
             return {
                 "result": False,
-                "msg": msg
+                "msg": "차량번호가 일치하지 않습니다."
             }
-        else:
-            return_data = self.calculate_time()
-            return return_data
 
     def capture(self):
         self.driver.save_screenshot("capture.png")
         # self.driver.quit()
 
     def run(self):
+        # local 실행인지 server 실행인지
+        # self.local_open_browser()
         self.open_browser()
         self.login()
         # self.capture()
