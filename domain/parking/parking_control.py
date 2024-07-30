@@ -41,7 +41,7 @@ class parking_control:
         self.driver.get(self.parking_url)
         print("브라우저 열기")
         print(self.driver.title)
-        time.sleep(2)
+        time.sleep(1)
 
     def local_open_browser(self):
         # chrome_options = Options()
@@ -54,13 +54,13 @@ class parking_control:
         self.driver.get(self.parking_url)
         print("브라우저 열기")
         print(self.driver.title)
-        time.sleep(2)
+        time.sleep(1)
 
     def login(self):
         self.driver.find_element(By.ID, value="userId").send_keys(self.login_id)
         self.driver.find_element(By.NAME, value="userPwd").send_keys(self.login_pw)
         self.driver.find_element(By.ID, value="btnLogin").click()
-        time.sleep(2)
+        time.sleep(1)
         self.driver.find_element(By.CLASS_NAME, value="modal-btn").click()
 
     def search_car_number(self):
@@ -106,7 +106,7 @@ class parking_control:
                 time.sleep(1)
 
         # self.driver.stop()
-        time.sleep(3)
+        time.sleep(0.5)
         return {
             'result': True,
             'msg': '주차등록  완료'
