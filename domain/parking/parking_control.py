@@ -12,7 +12,7 @@ from webdriver_manager.chrome import ChromeDriverManager
 
 class parking_control:
     def __init__(self, car_number):
-        self.car_number = car_number
+        self.car_number = str(car_number)
         self.login_id = "oomool"
         self.login_pw = "764026"
         self.parking_url = "http://112.220.29.190/login"
