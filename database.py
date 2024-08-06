@@ -2,9 +2,10 @@ from sqlalchemy import create_engine, MetaData
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 from starlette.config import Config
+import databases
 
 config = Config(".env")
-SQLALCHEMY_DATABASE_URL = config('SQLALCHEMY_DATABASE_URL')     # 데이터베이스 접속 주소
+SQLALCHEMY_DATABASE_URL = config('SQLALCHEMY_DATABASE_URL')  # 데이터베이스 접속 주소
 
 if SQLALCHEMY_DATABASE_URL.startswith("sqlite"):
     engine = create_engine(SQLALCHEMY_DATABASE_URL, connect_args={"check_same_thread": False})
@@ -30,3 +31,12 @@ def get_db():
         yield db
     finally:
         db.close()
+
+
+MYSQL_DATABASE_URL = config('MYSQL_DATABASE_URL')  # 데이터베이스 접속 주소
+database = databases.Database(MYSQL_DATABASE_URL)
+
+
+def get_mysql_db():
+    yield database
+    database.close()

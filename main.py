@@ -7,6 +7,11 @@ from domain.question import question_router
 from domain.answer import answer_router
 from domain.user import user_router
 from domain.parking import parking_router
+# from domain.shipping import shipping_router
+#
+# from database import get_mysql_db
+# mysql_db = get_mysql_db()
+
 
 app = FastAPI()
 
@@ -24,7 +29,6 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-
 # @app.get("/hello")
 # def hello():
 #     return {"message": "Hello, World!"}
@@ -33,6 +37,7 @@ app.include_router(question_router.router)
 app.include_router(answer_router.router)
 app.include_router(user_router.router)
 app.include_router(parking_router.router)
+# app.include_router(shipping_router.router)
 app.mount("/assets", StaticFiles(directory="frontend/dist/assets"))
 
 

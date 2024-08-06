@@ -109,10 +109,6 @@
     <!-- 페이징처리 끝 -->
   </div>
 
-  <div>
-    <button type="button" on:click={parking_test}> 주차등록 테스트 </button>
-  </div>
-
   <!-- <div>
     <a use:link href="/question-create" class="btn btn-primary {$is_login ? '' : 'disabled'}">질문 등록하기</a>  
   </div> -->
