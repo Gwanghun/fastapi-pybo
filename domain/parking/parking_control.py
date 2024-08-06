@@ -62,6 +62,18 @@ class parking_control:
         self.driver.find_element(By.CLASS_NAME, value="btnS1_1").click()
         time.sleep(0.5)
 
+    def del_discount_list(self):
+        discount_list = self.driver.find_elements(By.CLASS_NAME, value="btnDel")
+        print(discount_list)
+        if len(discount_list) > 0:
+            for discount in discount_list:
+                # print(discount)
+                discount_list[0].click()
+                self.driver.find_element(By.XPATH, value="/html/body/div[5]/div[3]/div/button[1]").click()
+                time.sleep(0.5)
+                self.driver.find_element(By.CLASS_NAME, value="modal-btn").click()
+                time.sleep(2)
+
     def calculate_time(self):
         pattern = r'(?P<hours>\d+)시간\s*(?P<minutes>\d+)분\s*'
         different_time = self.driver.find_element(By.ID, value="differentTime").text
@@ -92,9 +104,9 @@ class parking_control:
             for i in range(count):
                 print(btn, count)
                 self.driver.find_element(By.XPATH, f"//*[@price='{btn}']").click()
-                time.sleep(0.5)
+                time.sleep(1.5)
                 self.driver.find_element(By.CLASS_NAME, value="modal-btn").click()
-                time.sleep(0.5)
+                time.sleep(1.5)
 
         # self.driver.stop()
         time.sleep(0.5)
@@ -159,6 +171,7 @@ class parking_control:
         self.login()
         # self.capture()
         self.search_car_number()
+        # self.del_discount_list()
         return self.in_car_check()
         # self.calculate_time()
         # self.program.stop()
