@@ -7,6 +7,7 @@ from domain.question import question_router
 from domain.answer import answer_router
 from domain.user import user_router
 from domain.parking import parking_router
+from domain.telegram_bot import bot_router
 # from domain.shipping import shipping_router
 #
 # from database import get_mysql_db
@@ -37,6 +38,7 @@ app.include_router(question_router.router)
 app.include_router(answer_router.router)
 app.include_router(user_router.router)
 app.include_router(parking_router.router)
+app.include_router(bot_router.router)
 # app.include_router(shipping_router.router)
 app.mount("/assets", StaticFiles(directory="frontend/dist/assets"))
 
