@@ -33,10 +33,10 @@ def get_db():
         db.close()
 
 
-MYSQL_DATABASE_URL = config('MYSQL_DATABASE_URL')  # 데이터베이스 접속 주소
-database = databases.Database(MYSQL_DATABASE_URL)
-
-
-def get_mysql_db():
-    yield database
-    database.close()
+# MYSQL_DATABASE_URL = config('MYSQL_DATABASE_URL')  # 데이터베이스 접속 주소
+# database = databases.Database(MYSQL_DATABASE_URL)
+#
+#
+# def get_mysql_db():
+#     yield database
+#     database.close()
