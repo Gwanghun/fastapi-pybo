@@ -7,7 +7,7 @@ from domain.question import question_router
 from domain.answer import answer_router
 from domain.user import user_router
 from domain.parking import parking_router
-from domain.telegram_bot import bot_router
+# from domain.telegram_bot import bot_router
 # from domain.shipping import shipping_router
 #
 # from database import get_mysql_db
